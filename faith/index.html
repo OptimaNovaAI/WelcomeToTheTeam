@@ -2,26 +2,26 @@
 :root{--bg:#0B1122;--line:#2D3A52;--fg:#F1F5F9;--muted:#94A3B8;--blue:#009BFD;--magenta:#CA25B7;--paper:#FFFFFF;--ink:#1B2A4A;--ink-deep:#000C65;--ink-gray:#8A8A8A;--rule:#2E75B6;--field:#F4F6FA;--field-line:#D5DCE7;--err:#E2456B;--grid:rgba(148,163,184,.07);--glow:rgba(0,155,253,.32);--tint:rgba(106,94,224,.22);--clear:rgba(11,17,34,0);color-scheme:dark}
 *{box-sizing:border-box}
 html,body{height:100%}
-body{margin:0;background:radial-gradient(900px 500px at 50% 20%,var(--tint),var(--clear) 70%),var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;background:radial-gradient(900px 500px at 50% 20%,var(--tint),var(--clear) 70%),var(--bg);color:var(--fg);font-family:"Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 25%,transparent 70%);mask-image:radial-gradient(ellipse at 50% 40%,#000 25%,transparent 70%);pointer-events:none}
 .gate{min-height:100%;display:grid;place-items:center;padding:32px 16px;position:relative}
 .card{position:relative;width:min(360px,100%);background:var(--paper);color:var(--ink);border-radius:22px;padding:38px 26px 24px;box-shadow:0 40px 90px -30px var(--glow),0 0 0 1px var(--line);animation:swing 1.4s cubic-bezier(.2,.8,.2,1) backwards}
 .card::before{content:"";position:absolute;top:14px;left:50%;width:58px;height:9px;border-radius:99px;background:var(--bg);transform:translateX(-50%)}
 @keyframes swing{0%{transform:rotate(-6deg) translateY(-12px)}55%{transform:rotate(2deg)}100%{transform:none}}
 .logo{display:block;width:124px;height:auto;margin:4px auto 14px}
-h1{margin:0;text-align:center;font-size:26px;font-weight:800;letter-spacing:-.025em;color:var(--ink-deep)}
-.role{margin:6px 0 0;text-align:center;color:var(--magenta);font-weight:700;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding-bottom:16px;border-bottom:1px solid var(--rule)}
+h1{margin:0;text-align:center;font-size:28px;font-weight:300;letter-spacing:-.025em;color:var(--ink-deep);text-wrap:balance}
+.role{margin:6px 0 0;text-align:center;color:var(--magenta);font-weight:500;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;padding-bottom:16px;border-bottom:1px solid var(--rule)}
 form{display:grid;gap:12px;margin-top:18px}
 label.f{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-gray)}
 input[type=password]{width:100%;font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid var(--field-line);background:var(--field);color:var(--ink);outline:none}
 input[type=password]:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,155,253,.18)}
 .rem{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--ink)}
 .rem input{width:16px;height:16px;accent-color:var(--blue)}
-button{font:inherit;font-weight:700;font-size:15px;padding:13px 18px;border-radius:999px;border:0;background:var(--ink-deep);color:var(--paper);cursor:pointer;transition:background-color .2s}
+button{font:inherit;font-weight:500;font-size:15px;padding:13px 18px;border-radius:999px;border:0;background:var(--ink-deep);color:var(--paper);cursor:pointer;transition:background-color .2s}
 button:hover{background:var(--blue)}
 button:disabled{opacity:.7;cursor:progress}
 button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.err{min-height:1.2em;margin:0;font-size:13.5px;color:var(--err);font-weight:600}
+.err{min-height:1.2em;margin:0;font-size:13.5px;color:var(--err);font-weight:500}
 .hint{margin:6px 0 0;text-align:center;font-size:12.5px;color:var(--ink-gray)}
 .auto .card{visibility:hidden}
 @media (prefers-reduced-motion:reduce){.card{animation:none}}
@@ -48,7 +48,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-o
   var K='onai-kit-faith-key';
   function u8(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
   function b64(buf){var a=new Uint8Array(buf),s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
-  function show(html){document.open();document.write(html);document.close()}
+  function show(html){function go(){document.open();document.write(html);document.close()}if(document.readyState==='complete')go();else window.addEventListener('load',go,{once:true})}
   function decrypt(key){return crypto.subtle.decrypt({name:'AES-GCM',iv:u8(P.iv)},key,u8(P.c)).then(function(pt){return new TextDecoder().decode(pt)})}
   var saved=null;try{saved=localStorage.getItem(K)}catch(e){}
   if(saved&&window.crypto&&crypto.subtle){

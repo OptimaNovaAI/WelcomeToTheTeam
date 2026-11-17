@@ -48,7 +48,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-o
   var K='onai-kit-david-key';
   function u8(s){var b=atob(s),a=new Uint8Array(b.length);for(var i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return a}
   function b64(buf){var a=new Uint8Array(buf),s='';for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)}
-  function show(html){document.open();document.write(html);document.close()}
+  function show(html){function go(){document.open();document.write(html);document.close()}if(document.readyState==='complete')go();else window.addEventListener('load',go,{once:true})}
   function decrypt(key){return crypto.subtle.decrypt({name:'AES-GCM',iv:u8(P.iv)},key,u8(P.c)).then(function(pt){return new TextDecoder().decode(pt)})}
   var saved=null;try{saved=localStorage.getItem(K)}catch(e){}
   if(saved&&window.crypto&&crypto.subtle){
